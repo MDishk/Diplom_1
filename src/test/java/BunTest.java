@@ -17,9 +17,9 @@ public class BunTest {
         this.price = price;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
+        return Arrays.asList(new Object[][]{
                 {"black bun", 100.0f},
                 {"", 10.0f},
                 {"pupipupipupipupipupipupipupipu", 100.0f},
@@ -32,9 +32,14 @@ public class BunTest {
     }
 
     @Test
-    public void getBunAndPriceTest() {
+    public void getBunsNameTest() {
         Bun bun = new Bun(name, price);
-        Assert.assertEquals(name, bun.getName());
-        Assert.assertEquals(price, bun.getPrice(), 0.001);
+        Assert.assertEquals("У булки должно быть другое наименование", name, bun.getName());
+    }
+
+    @Test
+    public void getBunsPriceTest() {
+        Bun bun = new Bun(name, price);
+        Assert.assertEquals("Цена у этой булки другая", price, bun.getPrice(), 0.001);
     }
 }

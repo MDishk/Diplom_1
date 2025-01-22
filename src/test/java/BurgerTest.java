@@ -28,6 +28,15 @@ public class BurgerTest {
     @Before
     public void setUp() {
         burger = new Burger();
+
+        when(bun.getName()).thenReturn("black bun");
+        when(bun.getPrice()).thenReturn(100.0f);
+        when(firstIngredient.getType()).thenReturn(IngredientType.SAUCE);
+        when(firstIngredient.getName()).thenReturn("hot sauce");
+        when(firstIngredient.getPrice()).thenReturn(50.0f);
+        when(secondIngredient.getType()).thenReturn(IngredientType.FILLING);
+        when(secondIngredient.getName()).thenReturn("cutlet");
+        when(secondIngredient.getPrice()).thenReturn(30.0f);
     }
 
     @Test
@@ -42,6 +51,7 @@ public class BurgerTest {
         burger.addIngredient(firstIngredient);
 
         assertEquals(1, burger.ingredients.size());
+        assertEquals(firstIngredient, burger.ingredients.get(0));
     }
 
     @Test
@@ -65,10 +75,6 @@ public class BurgerTest {
 
     @Test
     public void getPriceTest() {
-        when(bun.getPrice()).thenReturn(100.0f);
-        when(firstIngredient.getPrice()).thenReturn(50.0f);
-        when(secondIngredient.getPrice()).thenReturn(30.0f);
-
         burger.setBuns(bun);
         burger.addIngredient(firstIngredient);
         burger.addIngredient(secondIngredient);
@@ -78,15 +84,6 @@ public class BurgerTest {
 
     @Test
     public void getReceiptTest() {
-        when(bun.getName()).thenReturn("black bun");
-        when(bun.getPrice()).thenReturn(100.0f);
-        when(firstIngredient.getType()).thenReturn(IngredientType.SAUCE);
-        when(firstIngredient.getName()).thenReturn("hot sauce");
-        when(firstIngredient.getPrice()).thenReturn(50.0f);
-        when(secondIngredient.getType()).thenReturn(IngredientType.FILLING);
-        when(secondIngredient.getName()).thenReturn("cutlet");
-        when(secondIngredient.getPrice()).thenReturn(30.0f);
-
         burger.setBuns(bun);
         burger.addIngredient(firstIngredient);
         burger.addIngredient(secondIngredient);
